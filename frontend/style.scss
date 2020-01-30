@@ -1,0 +1,138 @@
+$color-black: rgba(12, 21, 38, 1);
+$color-black-10: rgba(102, 136, 199, 0.1);
+$color-black-20: rgba(12, 21, 38, 0.2);
+$color-blue: rgba(58, 171, 216, 1);
+$color-green: rgba(28, 191, 22, 1);
+$color-yellow: rgba(216, 184, 23, 1);
+$color-orange: rgba(216, 117, 30, 1);
+$color-whitesmoke: whitesmoke;
+$color-white: white;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: $color-whitesmoke;
+  color: $color-black;
+}
+
+nav {
+  width: 100%;
+  background-color: $color-white;
+  box-shadow: 0px 0.5px 3px $color-black;
+  height: 80px;
+  display: flex;
+  div {
+    flex-grow: 1;
+    line-height: 60px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: $color-black;
+  }
+}
+
+.column-container {
+  display: flex;
+  overflow: auto;
+  @media only screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+}
+
+.column {
+  flex-grow: 1;
+  align-self: flex-start;
+  border-radius: 25px;
+  min-height: 200px;
+  min-width: 280px;
+  margin: 1rem;
+  @media only screen and (max-width: 500px) {
+    flex-grow: 1;
+    align-self: flex-start;
+    border-radius: 25px;
+    min-height: 200px;
+    min-width: 460px;
+    margin: 1rem;
+  }
+}
+
+.column-header {
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  color: $color-white;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 10px;
+  [data-card-category*="todo"] & {
+    background-color: $color-blue;
+  }
+  [data-card-category*="ongoing"] & {
+    background-color: $color-yellow;
+  }
+  [data-card-category*="test"] & {
+    background-color: $color-orange;
+  }
+  [data-card-category*="done"] & {
+    background-color: $color-green;
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 200px;
+  &.hoverable.hover {
+    background-color: $color-black-20;
+  }
+  &.hoverable {
+    background-color: $color-black-10;
+  }
+}
+.card {
+  border-radius: 25px;
+  min-height: 100px;
+  margin: 10px;
+  background-color: $color-white;
+  box-shadow: 3px 3px 5px $color-black-10;
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.card-create {
+  min-height: 30px !important;
+  margin: 10px;
+  text-align: center;
+  font-size: 2em;
+  & h3 {
+    pointer-events: none;
+  }
+}
+
+.card-title {
+  font-size: 2em;
+  padding: 1rem;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+.card-delete {
+  float: right;
+  padding-right: 1vw;
+  font-size: 1.5em;
+  &:hover {
+    font-weight: bold;
+    color: $color-orange;
+  }
+}

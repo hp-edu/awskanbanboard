@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>AWS Kanban</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <nav>
+      <div></div>
+      <div>AWS Kaban Board</div>
+      <div></div>
+    </nav>
+    <div class="column-container">
+      <div class="column" data-card-category="todo">
+        <div class="column-header">
+          할 일
+        </div>
+        <div class="card card-create" onclick="createCard(event)">
+          +
+        </div>
+        <section class="card-container"></section>
+      </div>
+      <div class="column" data-card-category="ongoing">
+        <div class="column-header ongoing">
+          진행중
+        </div>
+        <div class="card card-create" onclick="createCard(event)">
+          +
+        </div>
+        <section class="card-container"></section>
+      </div>
+      <div class="column" data-card-category="test">
+        <div class="column-header test">
+          테스트
+        </div>
+        <div class="card card-create" onclick="createCard(event)">
+          +
+        </div>
+        <section class="card-container"></section>
+      </div>
+      <div class="column" data-card-category="done">
+        <div class="column-header done">
+          완료
+        </div>
+        <div class="card card-create" onclick="createCard(event)">
+          +
+        </div>
+        <section class="card-container"></section>
+      </div>
+    </div>
+    <script type="module" src="index.js" tyle="text/javascript"></script>
+  </body>
+</html>
