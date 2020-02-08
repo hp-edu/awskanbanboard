@@ -1,18 +1,5 @@
 export default class APIHandler {
-  constructor() {
-    this.dummyData = [
-      {
-        id: "abc123",
-        title: "데이터베이스 구축하기",
-        category: "ongoing"
-      },
-      {
-        id: "def456",
-        title: "데이터베이스 삭제하기",
-        category: "todo"
-      }
-    ];
-  }
+  constructor() {}
 
   // TODO: 전체 카드 객체 리스트 반환. 없으면 NULL
   async getCards() {
@@ -32,7 +19,7 @@ export default class APIHandler {
       category: cardObj.category
     });
     console.log(this.dummyData);
-    return id;    
+    return id;
   }
 
   // TODO: ID로 카드 검색 후 내용,카테고리 수정
@@ -42,17 +29,40 @@ export default class APIHandler {
         ? { ...card, category: cardObj.category, title: cardObj.title }
         : card;
     });
-    console.log(this.dummyData)
+    console.log(this.dummyData);
   }
 
   // TODO: ID로 카드 검색 후 삭제
   async deleteCard(id) {
-    this.dummyData = this.dummyData.filter(card =>{
-      return card.id !== id
+    this.dummyData = this.dummyData.filter(card => {
+      return card.id !== id;
     });
     console.log(this.dummyData);
   }
-
-  // TODO: API 요청 컨테이너. Method, Path, Body 속성
-  // TODO: API 호출 함수
 }
+
+// TODO: API 요청 컨테이너. Method, Path, Body 속성
+const HOST = "https://b8ry5owy4h.execute-api.ap-northeast-2.amazonaws.com/prod";
+
+class APIRequest {
+  constructor(method, path, body = null) {
+    this.method = method;
+    this.url = HOST + path;
+    this.body = body;
+  }
+}
+
+// TODO: API 호출 함수
+const APIProcessor = async request => {
+  const response = await fetch(request.url, {
+    method: request.method, // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: request.body ? JSON.stringify(request.body) : null // body data type must match "Content-Type" header
+  });
+  console.log(response);
+};
