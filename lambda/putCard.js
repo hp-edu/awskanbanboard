@@ -12,14 +12,6 @@ exports.handler = async event => {
     const body = JSON.parse(event.body);
     var params = {
       TableName: tableName,
-      Item: {
-        id: id,
-        title: body.title,
-        category: body.category
-      }
-    };
-    var params = {
-      TableName: tableName,
       Key: { id: id },
       UpdateExpression: "set #c = :c, #t = :t",
       ExpressionAttributeNames: { "#c": "category", "#t": "title" },
