@@ -23,7 +23,7 @@ exports.handler = async event => {
     await documentClient.update(params).promise();
 
     response = {
-      statusCode: 200,
+      statusCode: 204,
       headers: {
         "Access-Control-Allow-Origin": "*"
       }
