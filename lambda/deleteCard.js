@@ -18,12 +18,18 @@ exports.handler = async event => {
     await documentClient.delete(params).promise();
 
     response = {
-      statusCode: 200
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
     };
   } catch (exception) {
     console.error(exception);
     response = {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify({ "Message: ": exception })
     };
   }

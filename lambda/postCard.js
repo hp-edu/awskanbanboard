@@ -22,12 +22,18 @@ exports.handler = async event => {
 
     response = {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify({ id: id })
     };
   } catch (exception) {
     console.error(exception);
     response = {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify({ "Message: ": exception })
     };
   }
