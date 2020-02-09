@@ -64,7 +64,8 @@ const APIProcessor = async request => {
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        "x-api-key": "XXNmmXO9be1rPTLAeLrXW5FqNvhlxLvv5RZ6fLBy"
       },
       body: request.body ? JSON.stringify(request.body) : null // body data type must match "Content-Type" header
     });
