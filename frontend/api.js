@@ -39,10 +39,8 @@ export default class APIHandler {
 
   // TODO: ID로 카드 검색 후 삭제
   async deleteCard(id) {
-    this.dummyData = this.dummyData.filter(card => {
-      return card.id !== id;
-    });
-    console.log(this.dummyData);
+    const request = new APIRequest("DELETE", `/kanban/cards/${id}`);
+    await APIProcessor(request);
   }
 }
 
