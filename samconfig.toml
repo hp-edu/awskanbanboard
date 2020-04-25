@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "sam-kanban"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-12cv32dy6m3hj"
+s3_prefix = "sam-kanban"
+region = "ap-northeast-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"

@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-kanban
+
+  Sample SAM Template for sam-kanban
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+    Handler: app.handler
+    Runtime: nodejs12.x
+    Layers:
+      - !Ref XrayLayer
+
+Resources:
+  DynamoDB:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      TableName: Cards
+
+  APIGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Kanban API Gateway
+      StageName: prod
+
+  XrayLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleRuntimes:
+        - nodejs12.x
+      ContentUri: layer/xraysdk
+      Description: Kanban board X-ray SDK layer
+      LayerName: XraySDK
+      RetentionPolicy: Retain
+
+  GetCardsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambda/getcards
+      Role: arn:aws:iam::189362608530:role/Lambda_Kanban_Role
+      Events:
+        Trigger:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /kanban/cards
+            Method: get
+            Auth:
+              ApiKeyRequired: true
+            RestApiId: !Ref APIGateway
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  APIGateway:
+    Description: "API Gateway endpoint URL for Prod stage for Kanban project"
+    Value: !Sub "https://${APIGateway}.execute-api.${AWS::Region}.amazonaws.com/prod"
