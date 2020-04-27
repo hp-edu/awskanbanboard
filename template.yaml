@@ -7,6 +7,8 @@ Description: >
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
+  Api:
+    OpenApiVersion: 3.0.1
   Function:
     Timeout: 3
     Handler: app.handler
@@ -28,6 +30,26 @@ Resources:
     Properties:
       Name: Kanban API Gateway
       StageName: prod
+      TracingEnabled: true
+      MethodSettings:
+        - HttpMethod: "*"
+          LoggingLevel: INFO
+          ResourcePath: "/*"
+      Cors:
+        AllowMethods: "'*'"
+        AllowHeaders: "'*'"
+        AllowOrigin: "'*'"
+      Auth:
+        UsagePlan:
+          CreateUsagePlan: PER_API
+          Description: Usage plan for this API
+          Quota:
+            Limit: 500
+            Period: DAY
+          Throttle:
+            BurstLimit: 10
+            RateLimit: 10
+      EndpointConfiguration: REGIONAL
 
   XrayLayer:
     Type: AWS::Serverless::LayerVersion
@@ -42,6 +64,7 @@ Resources:
   GetCardsFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      FunctionName: GetCards
       CodeUri: lambda/getcards
       Role: arn:aws:iam::189362608530:role/Lambda_Kanban_Role
       Events:
@@ -61,3 +84,6 @@ Outputs:
   APIGateway:
     Description: "API Gateway endpoint URL for Prod stage for Kanban project"
     Value: !Sub "https://${APIGateway}.execute-api.${AWS::Region}.amazonaws.com/prod"
+  APIKey:
+    Description: "API Key ID"
+    Value: !Ref APIGatewayApiKey
