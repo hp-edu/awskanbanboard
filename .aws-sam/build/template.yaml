@@ -72,6 +72,54 @@ Resources:
               ApiKeyRequired: true
             RestApiId:
               Ref: APIGateway
+  PostCardsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: PostCards
+      CodeUri: PostCardsFunction
+      Role: arn:aws:iam::189362608530:role/Lambda_Kanban_Role
+      Events:
+        Trigger:
+          Type: Api
+          Properties:
+            Path: /kanban/cards
+            Method: post
+            Auth:
+              ApiKeyRequired: true
+            RestApiId:
+              Ref: APIGateway
+  PutCardsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: PutCards
+      CodeUri: PutCardsFunction
+      Role: arn:aws:iam::189362608530:role/Lambda_Kanban_Role
+      Events:
+        Trigger:
+          Type: Api
+          Properties:
+            Path: /kanban/cards/{id}
+            Method: put
+            Auth:
+              ApiKeyRequired: true
+            RestApiId:
+              Ref: APIGateway
+  DeleteCardsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: DeleteCards
+      CodeUri: DeleteCardsFunction
+      Role: arn:aws:iam::189362608530:role/Lambda_Kanban_Role
+      Events:
+        Trigger:
+          Type: Api
+          Properties:
+            Path: /kanban/cards/{id}
+            Method: delete
+            Auth:
+              ApiKeyRequired: true
+            RestApiId:
+              Ref: APIGateway
 Outputs:
   APIGateway:
     Description: API Gateway endpoint URL for Prod stage for Kanban project

@@ -17,7 +17,7 @@ export default class APIHandler {
   async postCard(cardObj) {
     const request = new APIRequest("POST", "/kanban/cards", {
       title: cardObj.title,
-      category: cardObj.category
+      category: cardObj.category,
     });
     const response = await APIProcessor(request);
     if (response !== "Error") {
@@ -32,7 +32,7 @@ export default class APIHandler {
   async putCard(cardObj) {
     const request = new APIRequest("PUT", `/kanban/cards/${cardObj.id}`, {
       title: cardObj.title,
-      category: cardObj.category
+      category: cardObj.category,
     });
     await APIProcessor(request);
   }
@@ -45,7 +45,7 @@ export default class APIHandler {
 }
 
 // TODO: API 요청 컨테이너. Method, Path, Body 속성
-const HOST = "https://b8ry5owy4h.execute-api.ap-northeast-2.amazonaws.com/prod";
+const HOST = "https://xsexvzx5ga.execute-api.ap-northeast-2.amazonaws.com/prod";
 
 class APIRequest {
   constructor(method, path, body = null) {
@@ -56,7 +56,7 @@ class APIRequest {
 }
 
 // TODO: API 호출 함수
-const APIProcessor = async request => {
+const APIProcessor = async (request) => {
   try {
     const response = await fetch(request.url, {
       method: request.method, // *GET, POST, PUT, DELETE, etc.
@@ -65,9 +65,9 @@ const APIProcessor = async request => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "x-api-key": "XXNmmXO9be1rPTLAeLrXW5FqNvhlxLvv5RZ6fLBy"
+        "x-api-key": "wV7YdNkP156kP41cxRZzawUyQiYIIX18kZijbI0b",
       },
-      body: request.body ? JSON.stringify(request.body) : null // body data type must match "Content-Type" header
+      body: request.body ? JSON.stringify(request.body) : null, // body data type must match "Content-Type" header
     });
     switch (response.status) {
       case 200:
