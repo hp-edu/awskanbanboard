@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: whitesmoke;
+  color: #0c1526;
+}
+
+nav {
+  width: 100%;
+  background-color: white;
+  -webkit-box-shadow: 0px 0.5px 3px #0c1526;
+          box-shadow: 0px 0.5px 3px #0c1526;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+nav div {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  line-height: 60px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #0c1526;
+}
+
+.column-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .column-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow: auto;
+  }
+}
+
+.column {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  border-radius: 25px;
+  min-height: 200px;
+  min-width: 280px;
+  margin: 1rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .column {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    border-radius: 25px;
+    min-height: 200px;
+    min-width: 460px;
+    margin: 1rem;
+  }
+}
+
+.column-header {
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+[data-card-category*="todo"] .column-header {
+  background-color: #3aabd8;
+}
+
+[data-card-category*="ongoing"] .column-header {
+  background-color: #d8b817;
+}
+
+[data-card-category*="test"] .column-header {
+  background-color: #d8751e;
+}
+
+[data-card-category*="done"] .column-header {
+  background-color: #1cbf16;
+}
+
+.card-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 200px;
+}
+
+.card-container.hoverable.hover {
+  background-color: rgba(12, 21, 38, 0.2);
+}
+
+.card-container.hoverable {
+  background-color: rgba(102, 136, 199, 0.1);
+}
+
+.card {
+  border-radius: 25px;
+  min-height: 100px;
+  margin: 10px;
+  background-color: white;
+  -webkit-box-shadow: 3px 3px 5px rgba(102, 136, 199, 0.1);
+          box-shadow: 3px 3px 5px rgba(102, 136, 199, 0.1);
+}
+
+.card:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.card-create {
+  min-height: 30px !important;
+  margin: 10px;
+  text-align: center;
+  font-size: 2em;
+}
+
+.card-create h3 {
+  pointer-events: none;
+}
+
+.card-title {
+  font-size: 2em;
+  padding: 1rem;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+.card-delete {
+  float: right;
+  padding-right: 1vw;
+  font-size: 1.5em;
+}
+
+.card-delete:hover {
+  font-weight: bold;
+  color: #d8751e;
+}
+/*# sourceMappingURL=style.css.map */
